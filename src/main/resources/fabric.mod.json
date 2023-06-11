@@ -1,0 +1,37 @@
+{
+	"schemaVersion": 1,
+	"id": "commandbooks",
+	"version": "${version}",
+
+	"name": "Command books",
+	"description": "Save commands and run them on a simple item use.",
+	"authors": [
+		"Estecka"
+	],
+	"contact": {
+		"homepage": "https://modrinth.com/mod/command-books",
+		"sources": "https://github.com/Estecka/mc-command-books"
+	},
+	"license": "GNU AGPLv3",
+
+	"icon": "assets/cmdbook/icon.png",
+
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"tk.estecka.cmdbook.CommandBooks"
+		]
+	},
+	"mixins": [
+	],
+
+	"depends": {
+		"fabricloader": ">=0.14.19",
+		"fabric-api": "*",
+		"minecraft": "~1.19.4",
+		"java": ">=17"
+	},
+	"suggests": {
+		"another-mod": "*"
+	}
+}
