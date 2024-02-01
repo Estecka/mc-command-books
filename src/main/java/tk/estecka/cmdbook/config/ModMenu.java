@@ -30,7 +30,7 @@ implements ModMenuApi
 		var MISC = builder.getOrCreateCategory(Text.literal("Misc"));
 
 		MISC.addEntry(
-			entries.startDropdownMenu(Text.literal("Wand Item"),
+			entries.startDropdownMenu(Text.translatable("cmdbook.config.wandItem"),
 				DropdownMenuBuilder.TopCellElementBuilder.ofItemObject(CONFIG.GetWandItem().orElse(Items.AIR)),
 				DropdownMenuBuilder.CellCreatorBuilder.ofItemObject()
 			)
@@ -41,7 +41,8 @@ implements ModMenuApi
 		);
 
 		MISC.addEntry(
-			entries.startIntSlider(Text.literal("Permission Level"), CONFIG.permissionLevel, 0, 4)
+			entries.startIntSlider(Text.translatable("cmdbook.config.permissionLevel"), CONFIG.permissionLevel, 0, 4)
+			.setTextGetter(i->Text.translatable("cmdbook.permission."+i.toString()))
 			.setDefaultValue(DEFAULTS.permissionLevel)
 			.setSaveConsumer(i -> CONFIG.permissionLevel=i)
 			.build()
