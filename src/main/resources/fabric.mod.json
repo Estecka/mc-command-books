@@ -20,6 +20,9 @@
 	"entrypoints": {
 		"main": [
 			"tk.estecka.cmdbook.CommandBooks"
+		],
+		"modmenu":[
+			"tk.estecka.cmdbook.config.ModMenu"
 		]
 	},
 	"mixins": [
@@ -35,5 +38,9 @@
 	},
 	"breaks": {
 		"minecraft": ">=1.20.3"
+	},
+	"suggests": {
+		"modmenu": ">=6.2.1",
+		"cloth-config": ">=10.1.105"
 	}
 }

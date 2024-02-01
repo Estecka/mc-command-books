@@ -29,7 +29,7 @@ public class CommandBooks implements ModInitializer
 {
 	public static final Logger LOGGER = LoggerFactory.getLogger("CmdBooks");
 
-	static private final ConfigIO io = new ConfigIO("cmdbook.properties");
+	static public final ConfigIO io = new ConfigIO("cmdbook.properties");
 	static public final Config config = new Config();
 
 	@Override
@@ -45,7 +45,7 @@ public class CommandBooks implements ModInitializer
 	}
 
 	static private	TypedActionResult<ItemStack>	OnItemUse(PlayerEntity player, World world, Hand hand){
-		Optional<Item> wand = Registries.ITEM.getOrEmpty(config.wandItem);
+		Optional<Item> wand = config.GetWandItem();
 
 		if((wand.isPresent())
 		&& (player.hasPermissionLevel(config.permissionLevel))
