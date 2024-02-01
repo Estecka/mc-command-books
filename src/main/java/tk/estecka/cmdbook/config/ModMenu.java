@@ -40,6 +40,13 @@ implements ModMenuApi
 			.build()
 		);
 
+		MISC.addEntry(
+			entries.startIntSlider(Text.literal("Permission Level"), CONFIG.permissionLevel, 0, 4)
+			.setDefaultValue(DEFAULTS.permissionLevel)
+			.setSaveConsumer(i -> CONFIG.permissionLevel=i)
+			.build()
+		);
+
 		builder.setSavingRunnable(()->{
 			try{
 				CommandBooks.io.Write(CONFIG);
