@@ -12,7 +12,7 @@
 		"homepage": "https://modrinth.com/mod/command-books",
 		"sources": "https://github.com/Estecka/mc-command-books"
 	},
-	"license": "GNU AGPLv3",
+	"license": "MIT",
 
 	"icon": "assets/cmdbook/icon.png",
 
