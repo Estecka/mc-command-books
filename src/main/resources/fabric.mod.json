@@ -28,9 +28,12 @@
 	"depends": {
 		"fabricloader": ">=0.14.19",
 		"fabric-api": "*",
-		"minecraft": ">=1.19.4 <1.20.3",
 		"java": ">=17"
 	},
-	"suggests": {
+	"recommends": {
+		"minecraft": "^1.19.4"
+	},
+	"breaks": {
+		"minecraft": ">=1.20.3"
 	}
 }
