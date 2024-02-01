@@ -43,16 +43,18 @@ public class CommandBooks implements ModInitializer
 		UseItemCallback.EVENT.register(CommandBooks::OnItemUse);
 	}
 
-	static private	TypedActionResult<ItemStack>	OnItemUse(PlayerEntity player, World world, Hand hand){
-		Optional<Item> wand = config.GetWandItem();
+	static private TypedActionResult<ItemStack>	OnItemUse(PlayerEntity player, World world, Hand hand){
+		Optional<Item> wand;
 
-		if((wand.isPresent())
+		if((!world.isClient())
+		&& (world.getServer().areCommandBlocksEnabled())
 		&& (player.hasPermissionLevel(config.permissionLevel))
-		&& (player.getMainHandStack().isOf(wand.get()))
 		&& (player.getOffHandStack().isOf(Items.WRITABLE_BOOK))
+		&& (wand=config.GetWandItem()).isPresent()
+		&& (player.getMainHandStack().isOf(wand.get()))
 		){
 			NbtCompound nbt = player.getOffHandStack().getNbt();
-			if (nbt != null && !world.isClient()){
+			if (nbt != null){
 				var pages = nbt.getList("pages", NbtList.STRING_TYPE);
 				for (NbtElement p : pages) {
 					p.asString().lines().forEach((line)->{
@@ -68,11 +70,10 @@ public class CommandBooks implements ModInitializer
 	}
 
 	static private	boolean execute(PlayerEntity player, String command) {
-		MinecraftServer server = player.getServer();
-		if (server.areCommandBlocksEnabled() && !StringHelper.isEmpty(command))
+		if (!StringHelper.isEmpty(command))
 		try
 		{
-			server.getCommandManager().executeWithPrefix(player.getCommandSource(), command);
+			player.getServer().getCommandManager().executeWithPrefix(player.getCommandSource(), command);
 		}
 		catch(Throwable err)
 		{
