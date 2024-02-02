@@ -1,0 +1,9 @@
+{
+	"cmdbook.config.wandItem": "Wand Item Type",
+	"cmdbook.config.permissionLevel": "Required Permission Level",
+	"cmdbook.permission.0": "Player",
+	"cmdbook.permission.1": "Moderator",
+	"cmdbook.permission.2": "Game Master",
+	"cmdbook.permission.3": "Administrator",
+	"cmdbook.permission.4": "Owner"
+}
