@@ -12,7 +12,7 @@
 		"homepage": "https://modrinth.com/mod/command-books",
 		"sources": "https://github.com/Estecka/mc-command-books"
 	},
-	"license": "GNU AGPLv3",
+	"license": "MIT",
 
 	"icon": "assets/cmdbook/icon.png",
 
@@ -20,6 +20,9 @@
 	"entrypoints": {
 		"main": [
 			"tk.estecka.cmdbook.CommandBooks"
+		],
+		"modmenu":[
+			"tk.estecka.cmdbook.config.ModMenu"
 		]
 	},
 	"mixins": [
@@ -28,9 +31,16 @@
 	"depends": {
 		"fabricloader": ">=0.14.19",
 		"fabric-api": "*",
-		"minecraft": ">=1.19.4 <1.20.3",
 		"java": ">=17"
 	},
+	"recommends": {
+		"minecraft": "^1.19.4"
+	},
+	"breaks": {
+		"minecraft": ">=1.20.3"
+	},
 	"suggests": {
+		"modmenu": ">=6.2.1",
+		"cloth-config": ">=10.1.105"
 	}
 }
