@@ -8,4 +8,3 @@
 ## 1.1
 - Added ModMenu+ClothConfig screen
 - Added option to set a minimum permission level
-- Added option to change the main-hand item type
