@@ -20,7 +20,7 @@ extends ConfigIO.AFixedCoded
 	@Override
 	public Map<String, Property<?>> GetProperties(){
 		Map<String, Property<?>> props = new HashMap<>();
-		props.put("wandItem", Property.String ( ()->wandItemId.toString(), s->wandItemId=Identifier.tryParse(s) ));
+		// props.put("wandItem", Property.String ( ()->wandItemId.toString(), s->wandItemId=Identifier.tryParse(s) ));
 		props.put("permissionLevel", Property.Integer( ()->permissionLevel, i->permissionLevel=i ));
 		return props;
 	}
