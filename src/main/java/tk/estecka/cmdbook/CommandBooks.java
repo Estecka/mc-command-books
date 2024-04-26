@@ -2,12 +2,12 @@ package tk.estecka.cmdbook;
 
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.player.UseItemCallback;
+import net.minecraft.component.DataComponentTypes;
+import net.minecraft.component.type.WritableBookContentComponent;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.nbt.NbtElement;
-import net.minecraft.nbt.NbtList;
+import net.minecraft.text.RawFilteredPair;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.crash.CrashException;
@@ -56,11 +56,10 @@ public class CommandBooks implements ModInitializer
 	}
 
 	static private void	RunBook(PlayerEntity player){
-		NbtCompound nbt = player.getOffHandStack().getNbt();
-		if (nbt != null){
-			var pages = nbt.getList("pages", NbtList.STRING_TYPE);
-			for (NbtElement p : pages) {
-				p.asString().lines().forEach((line)->{
+		WritableBookContentComponent component = player.getOffHandStack().get(DataComponentTypes.WRITABLE_BOOK_CONTENT);
+		if (component != null){
+			for (RawFilteredPair<String> p : component.pages()) {
+				p.raw().lines().forEach((line)->{
 					// LOGGER.warn("Run: {}", line);
 					RunCommand(player, line);
 				});
