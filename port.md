@@ -4,3 +4,6 @@ Current master
 
 ### 1.20.3
 - `executeWithPrefix` had its return value removed. (No code changes required, but needs recompilation)
+
+### 1.20.5
+- Book content is now a DataComponent.
