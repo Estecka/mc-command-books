@@ -2,19 +2,17 @@ package tk.estecka.cmdbook.config;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Optional;
-
-import org.jetbrains.annotations.Nullable;
-
-import net.minecraft.item.Item;
-import net.minecraft.registry.Registries;
-import net.minecraft.util.Identifier;
+// import java.util.Optional;
+// import org.jetbrains.annotations.Nullable;
+// import net.minecraft.item.Item;
+// import net.minecraft.registry.Registries;
+// import net.minecraft.util.Identifier;
 import tk.estecka.cmdbook.config.ConfigIO.Property;
 
 public class Config
 extends ConfigIO.AFixedCoded
 {
-	public @Nullable Identifier wandItemId = new Identifier("stick");
+	// public @Nullable Identifier wandItemId = Identifier.of("minecraft", "stick");
 	public int permissionLevel = 2;
 
 	@Override
@@ -25,7 +23,7 @@ extends ConfigIO.AFixedCoded
 		return props;
 	}
 
-	public Optional<Item> GetWandItem(){
-		return Registries.ITEM.getOrEmpty(this.wandItemId);
-	}
+	// public Optional<Item> GetWandItem(){
+	// 	return Registries.ITEM.getOrEmpty(this.wandItemId);
+	// }
 }
