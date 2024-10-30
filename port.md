@@ -7,3 +7,7 @@ Current master
 
 ### 1.20.5
 - Book content is now a DataComponent.
+
+### 1.21.2
+- `TypedActionResult` was removed in favor of `ActionResult`
+- `getCommandSource()` was moved to `ServerPlayerEntity`.

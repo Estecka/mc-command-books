@@ -5,11 +5,11 @@ import net.fabricmc.fabric.api.event.player.UseItemCallback;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.WritableBookContentComponent;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.RawFilteredPair;
+import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
-import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.crash.CrashException;
 import net.minecraft.util.crash.CrashReport;
 import net.minecraft.util.crash.CrashReportSection;
@@ -40,34 +40,33 @@ public class CommandBooks implements ModInitializer
 		UseItemCallback.EVENT.register(CommandBooks::OnItemUse);
 	}
 
-	static private TypedActionResult<ItemStack>	OnItemUse(PlayerEntity player, World world, Hand hand){
+	static private ActionResult	OnItemUse(PlayerEntity player, World world, Hand hand){
 		if((!player.getOffHandStack().isOf(Items.WRITABLE_BOOK)) || (!player.getMainHandStack().isOf(Items.STICK))){
-			return TypedActionResult.pass(ItemStack.EMPTY);
+			return ActionResult.PASS;
 		}
 		else if(world.isClient()){
-			return TypedActionResult.success(ItemStack.EMPTY);
+			return ActionResult.SUCCESS;
 		}
 		else if((player.hasPermissionLevel(config.permissionLevel)) && (player.getServer().areCommandBlocksEnabled())){
-			RunBook(player);
-			return TypedActionResult.success(ItemStack.EMPTY);
+			RunBook((ServerPlayerEntity)player);
+			return ActionResult.SUCCESS;
 		}
 		else
-			return TypedActionResult.pass(ItemStack.EMPTY);
+			return ActionResult.PASS;
 	}
 
-	static private void	RunBook(PlayerEntity player){
+	static private void	RunBook(ServerPlayerEntity player){
 		WritableBookContentComponent component = player.getOffHandStack().get(DataComponentTypes.WRITABLE_BOOK_CONTENT);
 		if (component != null){
 			for (RawFilteredPair<String> p : component.pages()) {
 				p.raw().lines().forEach((line)->{
-					// LOGGER.warn("Run: {}", line);
 					RunCommand(player, line);
 				});
 			}
 		}
 	}
 
-	static private void	RunCommand(PlayerEntity player, String command) {
+	static private void	RunCommand(ServerPlayerEntity player, String command) {
 		if (!StringUtils.isEmpty(command))
 		try
 		{
