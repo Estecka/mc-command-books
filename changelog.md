@@ -3,13 +3,15 @@
 ### 1.0.0
 - Initial Release
 ### 1.0.1
-- Updated for MC 1.20.3
+- Updated for MC 1.20.3
 
 ## 1.1
 ### 1.1.0
 - Added ModMenu+ClothConfig screen
 - Added option to set a minimum permission level
 ### 1.1.1
-- Updated for MC 1.20.5
+- Updated for MC 1.20.5
 ### 1.1.2
-- Updated for MC 1.21.0
+- Updated for MC 1.21.0
+### 1.1.3
+- Updated for MC 1.21.2
