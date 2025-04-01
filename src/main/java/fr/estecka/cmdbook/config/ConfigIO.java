@@ -1,4 +1,4 @@
-package tk.estecka.cmdbook.config;
+package fr.estecka.cmdbook.config;
 
 
 /*

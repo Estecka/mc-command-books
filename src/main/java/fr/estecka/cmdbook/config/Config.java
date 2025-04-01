@@ -1,4 +1,4 @@
-package tk.estecka.cmdbook.config;
+package fr.estecka.cmdbook.config;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -7,7 +7,7 @@ import java.util.Map;
 // import net.minecraft.item.Item;
 // import net.minecraft.registry.Registries;
 // import net.minecraft.util.Identifier;
-import tk.estecka.cmdbook.config.ConfigIO.Property;
+import fr.estecka.cmdbook.config.ConfigIO.Property;
 
 public class Config
 extends ConfigIO.AFixedCoded

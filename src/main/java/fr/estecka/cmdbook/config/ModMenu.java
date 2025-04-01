@@ -1,16 +1,16 @@
-package tk.estecka.cmdbook.config;
+package fr.estecka.cmdbook.config;
 
 import java.io.IOException;
 import java.util.stream.Collectors;
 import com.terraformersmc.modmenu.api.ConfigScreenFactory;
 import com.terraformersmc.modmenu.api.ModMenuApi;
+import fr.estecka.cmdbook.CommandBooksMod;
 import me.shedaniel.clothconfig2.api.ConfigBuilder;
 import me.shedaniel.clothconfig2.impl.builders.DropdownMenuBuilder;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.item.Items;
 import net.minecraft.registry.Registries;
 import net.minecraft.text.Text;
-import tk.estecka.cmdbook.CommandBooks;
 
 public class ModMenu
 implements ModMenuApi
@@ -23,7 +23,7 @@ implements ModMenuApi
 	}
 
 	private Screen	CreateScreen(Screen parent){
-		final var CONFIG = CommandBooks.config;
+		final var CONFIG = CommandBooksMod.config;
 		final var builder = ConfigBuilder.create().setParentScreen(parent).setTitle(Text.literal("Command Books"));
 		final var entries = builder.entryBuilder();
 
@@ -50,10 +50,10 @@ implements ModMenuApi
 
 		builder.setSavingRunnable(()->{
 			try{
-				CommandBooks.io.Write(CONFIG);
+				CommandBooksMod.io.Write(CONFIG);
 			}
 			catch (IOException e){
-				CommandBooks.LOGGER.error("Unable to save config: {}", e);
+				CommandBooksMod.LOGGER.error("Unable to save config: {}", e);
 			}
 		});
 
