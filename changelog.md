@@ -15,3 +15,5 @@
 - Updated for MC 1.21.0
 ### 1.1.3
 - Updated for MC 1.21.2
+### 1.1.4
+- Updated ofr MC 1.21.5
