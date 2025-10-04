@@ -14,3 +14,7 @@ Current master
 
 ### 1.21.5
 - The unmapped name of `ItemStack.get` changed. No code change required, but needs recompilation.
+
+### 1.21.9
+- `NbtComponent.getNbt()` was removed.
+- `Entity.GetWorld()` was removed.

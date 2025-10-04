@@ -89,14 +89,14 @@ implements ModInitializer
 		if((!book.isOf(Items.WRITABLE_BOOK))
 		|| (!player.getMainHandStack().isOf(Items.DEBUG_STICK))
 		|| (!book.contains(DataComponentTypes.CUSTOM_DATA))
-		|| (!book.get(DataComponentTypes.CUSTOM_DATA).getNbt().getBoolean(MOD_ID, false))
+		|| (!book.get(DataComponentTypes.CUSTOM_DATA).copyNbt().getBoolean(MOD_ID, false))
 		){
 			return ActionResult.PASS;
 		}
 		else if(world.isClient()){
 			return ActionResult.SUCCESS;
 		}
-		else if((player.hasPermissionLevel(config.permissionLevel)) && (player.getServer().areCommandBlocksEnabled())){
+		else if((player.hasPermissionLevel(config.permissionLevel)) && (player.getEntityWorld().getServer().areCommandBlocksEnabled())){
 			RunBook((ServerPlayerEntity)player);
 			return ActionResult.SUCCESS;
 		}
@@ -119,7 +119,7 @@ implements ModInitializer
 		if (!StringUtils.isEmpty(command))
 		try
 		{
-			player.getServer().getCommandManager().executeWithPrefix(player.getCommandSource(), command);
+			player.getEntityWorld().getServer().getCommandManager().executeWithPrefix(player.getCommandSource(), command);
 		}
 		catch(Throwable err)
 		{
