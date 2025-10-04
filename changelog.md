@@ -19,8 +19,11 @@
 - Updated ofr MC 1.21.5
 
 # v2
+### 2.0.0
 Command book is now separated from regular writable books:
 - Command books have a custom item model.
 - Command books are available in the creative inventory under the operator tab.
 - Writable books cannot execute commands with the required custom data.
 - Changed main-hand item to debug-stick
+### 2.0.1
+- Updated for MC 1.21.9
