@@ -27,3 +27,5 @@ Command book is now separated from regular writable books:
 - Changed main-hand item to debug-stick
 ### 2.0.1
 - Updated for MC 1.21.9
+### 2.0.2
+- Updated for MC 1.21.11
