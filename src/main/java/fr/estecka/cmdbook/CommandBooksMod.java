@@ -6,6 +6,8 @@ import net.fabricmc.fabric.api.event.player.UseEntityCallback;
 import net.fabricmc.fabric.api.event.player.UseItemCallback;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroupEntries;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
+import net.minecraft.command.permission.Permission;
+import net.minecraft.command.permission.PermissionLevel;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.NbtComponent;
 import net.minecraft.component.type.WritableBookContentComponent;
@@ -15,7 +17,9 @@ import net.minecraft.item.ItemGroups;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.RawFilteredPair;
 import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
@@ -28,6 +32,7 @@ import net.minecraft.util.crash.CrashReportSection;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.world.World;
+import net.minecraft.world.rule.GameRules;
 import fr.estecka.cmdbook.config.Config;
 import fr.estecka.cmdbook.config.ConfigIO;
 import java.io.IOException;
@@ -85,6 +90,8 @@ implements ModInitializer
 	}
 
 	static private ActionResult	OnItemUse(PlayerEntity player, World world, Hand hand){
+		final MinecraftServer server = player.getEntityWorld().getServer();
+
 		final ItemStack book = player.getOffHandStack();
 		if((!book.isOf(Items.WRITABLE_BOOK))
 		|| (!player.getMainHandStack().isOf(Items.DEBUG_STICK))
@@ -96,7 +103,9 @@ implements ModInitializer
 		else if(world.isClient()){
 			return ActionResult.SUCCESS;
 		}
-		else if((player.hasPermissionLevel(config.permissionLevel)) && (player.getEntityWorld().getServer().areCommandBlocksEnabled())){
+		else if(player.getPermissions().hasPermission(new Permission.Level(PermissionLevel.fromLevel(config.permissionLevel)))
+		    && ((ServerWorld)player.getEntityWorld()).getGameRules().getValue(GameRules.COMMAND_BLOCKS_WORK)
+		){
 			RunBook((ServerPlayerEntity)player);
 			return ActionResult.SUCCESS;
 		}
@@ -119,7 +128,7 @@ implements ModInitializer
 		if (!StringUtils.isEmpty(command))
 		try
 		{
-			player.getEntityWorld().getServer().getCommandManager().executeWithPrefix(player.getCommandSource(), command);
+			player.getEntityWorld().getServer().getCommandManager().parseAndExecute(player.getCommandSource(), command);
 		}
 		catch(Throwable err)
 		{

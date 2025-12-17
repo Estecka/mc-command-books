@@ -18,3 +18,7 @@ Current master
 ### 1.21.9
 - `NbtComponent.getNbt()` was removed.
 - `Entity.GetWorld()` was removed.
+
+### 1.21.9
+- Comparing permision levels is now needlessly complicated.
+- `MinecraftServer::areCommandBlocksEnabled` was removed.
