@@ -6,6 +6,7 @@ import net.fabricmc.fabric.api.event.player.UseEntityCallback;
 import net.fabricmc.fabric.api.event.player.UseItemCallback;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroupEntries;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
+import net.minecraft.command.permission.Permission;
 import net.minecraft.command.permission.PermissionLevel;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.NbtComponent;
@@ -102,7 +103,7 @@ implements ModInitializer
 		else if(world.isClient()){
 			return ActionResult.SUCCESS;
 		}
-		else if(server.getPermissionLevel(player.getPlayerConfigEntry()).getLevel().isAtLeast(PermissionLevel.fromLevel(config.permissionLevel))
+		else if(player.getPermissions().hasPermission(new Permission.Level(PermissionLevel.fromLevel(config.permissionLevel)))
 		    && ((ServerWorld)player.getEntityWorld()).getGameRules().getValue(GameRules.COMMAND_BLOCKS_WORK)
 		){
 			RunBook((ServerPlayerEntity)player);
